@@ -13,4 +13,4 @@ threshold = 90
 
 ret2, img_th = cv2.threshold(img, threshold, 255, cv2.THRESH_BINARY)
 
-shrink(img_th, 'output.jpg')
+shrink(img_th, 'output.jpg', 256, 256)

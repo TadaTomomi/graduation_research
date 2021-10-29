@@ -1,6 +1,7 @@
 import cv2
 import glob
 import numpy as np
+import torch
 
 def train_data():
     datasets = []
@@ -17,7 +18,7 @@ def train_data():
         datasets.append(volume)
     np_datasets = np.array(datasets)
     np_datasets = np_datasets.reshape([num, 3, 216, 96, 96])
-    return np_datasets
+    return torch.from_numpy(np_datasets).float()
 
 def valid_data():
     datasets = []
@@ -34,4 +35,4 @@ def valid_data():
         datasets.append(volume)
     np_datasets = np.array(datasets)
     np_datasets = np_datasets.reshape([num, 3, 216, 96, 96])
-    return np_datasets
+    return torch.from_numpy(np_datasets).float()

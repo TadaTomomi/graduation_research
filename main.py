@@ -19,8 +19,8 @@ print("Using {} device".format(device))
 # train_data = torch.randn(5, 3, 216, 96, 96)
 # valid_data = torch.randn(5, 3, 216, 96, 96)
 
-train_data = torch.from_numpy(train_data()).float()
-valid_data = torch.from_numpy(valid_data()).float()
+train_data = train_data()
+valid_data = valid_data()
 
 #ラベルをnumpy配列に入れる
 # train_label = torch.from_numpy(np.loadtxt('train_label.csv')).long()
@@ -31,7 +31,8 @@ valid_label = make_label('valid_label.csv').float()
 
 #transform(前処理を定義)
 transform = transforms.Compose([
-    transforms.ToTensor()
+    # transforms.ToTensor()
+    transforms.Normalize((0.5, 0.5, 0.5, 0.5), (0.5, 0.5, 0.5, 0.5))
     ])
 
 #データセットを定義
@@ -55,7 +56,7 @@ criterion = nn.MSELoss()
 optimizer = optim.Adam(model.parameters(), lr=0.01)
 
 #学習
-epochs = 10
+epochs = 5
 valid_loss_list = []
 for t in range(epochs):
     print(f"Epoch {t+1}\n-------------------------------")
@@ -69,5 +70,5 @@ torch.save(model, 'model.pth')
 
 #損失・正答率のグラフ表示
 # plt.plot(train_loss, color='red')
-plt.plot(valid_loss_list, color='blue')
-plt.show()
+# plt.plot(valid_loss_list, color='blue')
+# plt.show()

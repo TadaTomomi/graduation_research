@@ -23,11 +23,8 @@ train_data = train_data()
 valid_data = valid_data()
 
 #ラベルをnumpy配列に入れる
-# train_label = torch.from_numpy(np.loadtxt('train_label.csv')).long()
-# valid_label = torch.from_numpy(np.loadtxt('valid_label.csv')).long()
-
-train_label = make_label('train_label.csv').float()
-valid_label = make_label('valid_label.csv').float()
+train_label = make_label('train_label.csv')
+valid_label = make_label('valid_label.csv')
 
 #transform(前処理を定義)
 transform = transforms.Compose([
